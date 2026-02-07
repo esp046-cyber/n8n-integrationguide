@@ -1,0 +1,2834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n 300+ Integration Guide 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1%;
+        }
+
+        .container {
+            max-width: 100%;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ea384c 0%, #d31027 100%);
+            color: white;
+            padding: 20px 1%;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            opacity: 0.95;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 14px 8px;
+            text-align: center;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s;
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .tab.active {
+            background: #ffffff;
+            color: #ea384c;
+            border-bottom: 3px solid #ea384c;
+        }
+
+        .content {
+            padding: 1%;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .search-box {
+            margin: 1%;
+            padding: 12px;
+            width: calc(100% - 2%);
+            border: 2px solid #ea384c;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .category {
+            margin-bottom: 16px;
+        }
+
+        .category-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 1%;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .integration-card {
+            background: #f8f9fa;
+            border-left: 4px solid #ea384c;
+            padding: 12px 1%;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .integration-card:active {
+            transform: scale(0.98);
+            background: #e9ecef;
+        }
+
+        .integration-name {
+            font-weight: 700;
+            color: #212529;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .integration-desc {
+            font-size: 0.75rem;
+            color: #495057;
+            line-height: 1.4;
+        }
+
+        .use-case {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 1%;
+            margin: 8px 0;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .client-tag {
+            display: inline-block;
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin: 4px 4px 4px 0;
+            font-weight: 600;
+        }
+
+        .price-info {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 10px 1%;
+            margin: 8px 0;
+            border-radius: 4px;
+        }
+
+        .price-title {
+            font-weight: 700;
+            color: #155724;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .price-detail {
+            font-size: 0.75rem;
+            color: #155724;
+            line-height: 1.5;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 1%;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>n8n Integration Guide 2026</h1>
+            <p>300+ Pre-Built Workflow Integrations</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">370+</div>
+                <div class="stat-label">Integrations</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Nodes Available</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('popular')">Popular</button>
+            <button class="tab" onclick="showTab('marketing')">Marketing</button>
+            <button class="tab" onclick="showTab('sales')">Sales CRM</button>
+            <button class="tab" onclick="showTab('dev')">Dev Tools</button>
+            <button class="tab" onclick="showTab('pricing')">Pricing</button>
+            <button class="tab" onclick="showTab('clients')">Target Clients</button>
+        </div>
+
+        <input type="text" class="search-box" placeholder="🔍 Search integrations..." id="searchBox" onkeyup="searchIntegrations()">
+
+        <div class="content" id="content">
+            <!-- POPULAR TAB -->
+            <div id="popular" class="tab-content">
+                <div class="category">
+                    <div class="category-title">🔥 Most Used Integrations (Top 20)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">1. Google Sheets</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete rows, append data, lookup values, clear sheets<br>
+                        <strong>Triggers:</strong> New row added, row updated<br>
+                        <strong>Use Cases:</strong> Lead tracking, form responses, inventory management, sales reporting, data collection from multiple sources, automated dashboards</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">2. Slack</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create channel, add reaction, upload file, update user status<br>
+                        <strong>Triggers:</strong> New message, new channel, reaction added, file shared<br>
+                        <strong>Use Cases:</strong> Customer support alerts, DevOps notifications, team collaboration, incident management, daily standup automation, sales alerts</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">3. Gmail</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, add label, mark as read/unread, create draft, search emails<br>
+                        <strong>Triggers:</strong> New email received, email labeled<br>
+                        <strong>Use Cases:</strong> Email drip campaigns, automated responses, lead nurturing, invoice sending, customer onboarding, support ticket creation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">4. HTTP Request / Webhook</div>
+                        <div class="integration-desc"><strong>Actions:</strong> GET/POST/PUT/DELETE requests, custom headers, authentication<br>
+                        <strong>Triggers:</strong> Webhook received<br>
+                        <strong>Use Cases:</strong> Connect any API, custom integrations, form submissions, payment notifications, IoT device triggers, third-party app connections</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">5. Airtable</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete records, list records, search<br>
+                        <strong>Triggers:</strong> New record, record updated<br>
+                        <strong>Use Cases:</strong> Custom CRM, project management, content calendar, applicant tracking, product catalog, client portal</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">6. Notion</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create page, update database, add block, archive page<br>
+                        <strong>Triggers:</strong> Database item created/updated<br>
+                        <strong>Use Cases:</strong> Knowledge base automation, meeting notes, task management, documentation generation, wiki updates, team handbooks</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">7. Discord</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create channel, add role, kick/ban user, send DM<br>
+                        <strong>Triggers:</strong> New message, member joined, reaction added<br>
+                        <strong>Use Cases:</strong> Community management, gaming server automation, NFT minting alerts, customer support, event announcements, moderation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">8. Telegram</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, send photo/video, create poll, pin message<br>
+                        <strong>Triggers:</strong> New message, callback query, inline query<br>
+                        <strong>Use Cases:</strong> Chatbots, crypto alerts, news distribution, customer service, order notifications, trading signals</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">9. Google Drive</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, create folder, share file, move/copy/delete, download<br>
+                        <strong>Triggers:</strong> File created, file updated, folder created<br>
+                        <strong>Use Cases:</strong> Document backup, file organization, client deliverables, invoice storage, contract management, photo backup</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">10. Trello</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create card, add checklist, move card, add member, create board<br>
+                        <strong>Triggers:</strong> Card created, card moved, card updated<br>
+                        <strong>Use Cases:</strong> Project management, content pipeline, bug tracking, sales pipeline, event planning, onboarding workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">11. Microsoft Excel</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add/update/delete rows, get tables, create table, refresh workbook<br>
+                        <strong>Triggers:</strong> Row added/modified<br>
+                        <strong>Use Cases:</strong> Financial reporting, data analysis, inventory tracking, expense management, employee records, sales forecasting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">12. OpenAI (ChatGPT)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Chat completion, text generation, embeddings, image generation (DALL-E)<br>
+                        <strong>Triggers:</strong> N/A (action-only)<br>
+                        <strong>Use Cases:</strong> Content creation, customer support automation, data analysis, summarization, translation, code generation, SEO content</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">13. MySQL</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute query, insert/update/delete, create table<br>
+                        <strong>Triggers:</strong> N/A (polling required)<br>
+                        <strong>Use Cases:</strong> Database management, data migration, reporting, user management, transaction processing, inventory updates</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">14. Typeform</div>
+                        <div class="integration-desc"><strong>Actions:</strong> N/A<br>
+                        <strong>Triggers:</strong> Form submitted<br>
+                        <strong>Use Cases:</strong> Lead generation, surveys, event registration, job applications, feedback collection, quiz results processing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">15. Stripe</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create customer, charge card, create subscription, refund, create invoice<br>
+                        <strong>Triggers:</strong> Payment successful, subscription created, invoice paid<br>
+                        <strong>Use Cases:</strong> Payment processing, subscription management, refund automation, invoice generation, revenue tracking, customer billing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">16. Shopify</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create order, update inventory, create customer, add product<br>
+                        <strong>Triggers:</strong> New order, customer created, product updated<br>
+                        <strong>Use Cases:</strong> Order fulfillment, inventory sync, customer management, abandoned cart recovery, product updates, shipping automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">17. WordPress</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update post, create page, add comment, upload media<br>
+                        <strong>Triggers:</strong> Post published, comment added<br>
+                        <strong>Use Cases:</strong> Content automation, blog posting, SEO updates, media management, comment moderation, multi-site management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">18. GitHub</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create issue, create pull request, add comment, create repository<br>
+                        <strong>Triggers:</strong> Issue opened, PR created, push to branch, release created<br>
+                        <strong>Use Cases:</strong> DevOps automation, CI/CD pipelines, code review notifications, release management, bug tracking, project updates</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">19. Twilio</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send SMS, make call, send WhatsApp message, lookup phone<br>
+                        <strong>Triggers:</strong> Incoming SMS, incoming call<br>
+                        <strong>Use Cases:</strong> SMS marketing, two-factor authentication, appointment reminders, order confirmations, emergency alerts, customer notifications</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">20. Calendly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> N/A<br>
+                        <strong>Triggers:</strong> Event scheduled, event cancelled, invitee created<br>
+                        <strong>Use Cases:</strong> Meeting automation, client onboarding, sales calls, follow-up sequences, calendar sync, reminder emails</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">☁️ Cloud Storage & File Management (15)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">21. Dropbox</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, create folder, move/copy file, share file, create link<br>
+                        <strong>Triggers:</strong> File created, folder created<br>
+                        <strong>Use Cases:</strong> File backup, team collaboration, client file sharing, photo storage, document versioning</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">22. OneDrive</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, create folder, share item, get file content<br>
+                        <strong>Triggers:</strong> File created, file updated<br>
+                        <strong>Use Cases:</strong> Microsoft 365 integration, enterprise file management, SharePoint automation, document collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">23. AWS S3</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download object, create bucket, delete object, list objects<br>
+                        <strong>Triggers:</strong> N/A (polling required)<br>
+                        <strong>Use Cases:</strong> Large file storage, static website hosting, backup systems, media CDN, data lakes</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">24. Box</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, create folder, share file, add collaborator<br>
+                        <strong>Triggers:</strong> File uploaded, file updated<br>
+                        <strong>Use Cases:</strong> Enterprise content management, secure file sharing, compliance documentation, legal documents</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">25. Google Cloud Storage</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download object, create bucket, list objects<br>
+                        <strong>Triggers:</strong> Object created<br>
+                        <strong>Use Cases:</strong> App file storage, video hosting, backup solution, big data storage</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">26. FTP</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download file, list directory, delete file, rename<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Legacy system integration, website deployment, server file management, bulk file transfers</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">27. SFTP</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download file, list directory, create directory<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Secure file transfers, financial data exchange, healthcare data compliance, B2B file sharing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">28. Nextcloud</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, create folder, share file, create user<br>
+                        <strong>Triggers:</strong> File created<br>
+                        <strong>Use Cases:</strong> Self-hosted cloud storage, team collaboration, privacy-focused file sharing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">29. pCloud</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, create folder, share link<br>
+                        <strong>Triggers:</strong> File uploaded<br>
+                        <strong>Use Cases:</strong> Personal cloud storage, media backup, file sharing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">30. Backblaze B2</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download file, create bucket, delete file<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Cost-effective backup, archival storage, disaster recovery</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">31. MinIO</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download object, create bucket, list objects<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Self-hosted S3 alternative, on-premise object storage, Kubernetes storage</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">32. WeTransfer</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send files, create transfer<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Large file sending, creative asset delivery, client file transfers</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">33. Filestack</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload file, transform image, convert file<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> File upload handling, image optimization, file conversions</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">34. Cloudinary</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload image/video, transform media, create folder<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Media management, image optimization, video transcoding, DAM systems</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">35. Azure Blob Storage</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload/download blob, create container, list blobs<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Enterprise cloud storage, Microsoft ecosystem integration, unstructured data storage</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📊 Spreadsheets & Data (12)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">36. Microsoft Excel 365</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add/update row, create table, get worksheet<br>
+                        <strong>Use Cases:</strong> Financial modeling, business reporting, data analysis, team collaboration on budgets</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">37. Google Sheets (Extended)</div>
+                        <div class="integration-desc"><strong>Advanced Actions:</strong> Batch update, create chart, protect range, add conditional formatting<br>
+                        <strong>Use Cases:</strong> Dynamic dashboards, automated reporting, data validation, multi-user data entry</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">38. Airtable (Extended)</div>
+                        <div class="integration-desc"><strong>Advanced Actions:</strong> Batch create, link records, upload attachments, filter complex queries<br>
+                        <strong>Use Cases:</strong> Relational databases, project portfolios, recruiting ATS, product roadmaps</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">39. Smartsheet</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add/update row, attach file, create sheet<br>
+                        <strong>Use Cases:</strong> Enterprise project management, resource allocation, gantt charts, construction management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">40. Coda</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create row, update row, get table<br>
+                        <strong>Use Cases:</strong> Dynamic documents, team wikis, project trackers, all-in-one workspaces</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">41. Baserow</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete row, list rows<br>
+                        <strong>Use Cases:</strong> Open-source Airtable alternative, self-hosted databases, privacy-focused data management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">42. NocoDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> CRUD operations, table management<br>
+                        <strong>Use Cases:</strong> Turn databases into spreadsheets, open-source no-code database</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">43. Rows</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add row, update cell, create table<br>
+                        <strong>Use Cases:</strong> Spreadsheet automation, data enrichment, API-powered spreadsheets</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">44. SeaTable</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update row, manage tables<br>
+                        <strong>Use Cases:</strong> Collaborative databases, team knowledge bases, structured data management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">45. Grist</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add/update records, create tables<br>
+                        <strong>Use Cases:</strong> Relational spreadsheets, custom business apps, data modeling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">46. Zoho Sheet</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update row, format cells<br>
+                        <strong>Use Cases:</strong> Zoho ecosystem integration, business spreadsheets, collaborative editing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">47. Caspio</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update records, query data<br>
+                        <strong>Use Cases:</strong> Low-code database apps, business applications, data collection</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MARKETING TAB -->
+            <div id="marketing" class="tab-content hide">
+                <div class="category">
+                    <div class="category-title">📧 Email Marketing Platforms (25)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">48. Mailchimp</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, create campaign, send email, manage lists, add tags<br>
+                        <strong>Triggers:</strong> New subscriber, campaign sent, email opened<br>
+                        <strong>Use Cases:</strong> Newsletter automation, drip campaigns, e-commerce email marketing, event promotions, abandoned cart emails</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">49. SendGrid</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, add contact, create list, manage templates<br>
+                        <strong>Triggers:</strong> Email delivered, email opened, link clicked<br>
+                        <strong>Use Cases:</strong> Transactional emails, password resets, order confirmations, high-volume email sending, API-based email</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">50. ConvertKit</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, tag subscriber, create broadcast, add to sequence<br>
+                        <strong>Triggers:</strong> New subscriber, tag added, form submitted<br>
+                        <strong>Use Cases:</strong> Creator email marketing, course launches, digital product sales, membership sites, influencer campaigns</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">51. ActiveCampaign</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, add tag, create deal, send campaign<br>
+                        <strong>Triggers:</strong> Contact added, automation webhook, deal updated<br>
+                        <strong>Use Cases:</strong> Marketing automation, CRM integration, behavioral tracking, lead scoring, sales pipeline automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">52. GetResponse</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add contact, create campaign, manage autoresponders<br>
+                        <strong>Triggers:</strong> Contact added, email opened<br>
+                        <strong>Use Cases:</strong> Webinar marketing, landing pages, email automation, list building</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">53. AWeber</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, manage lists, create broadcast<br>
+                        <strong>Triggers:</strong> New subscriber, email opened<br>
+                        <strong>Use Cases:</strong> Small business email marketing, newsletter campaigns, list segmentation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">54. Constant Contact</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add contact, create email campaign, manage lists<br>
+                        <strong>Triggers:</strong> Contact added, campaign sent<br>
+                        <strong>Use Cases:</strong> Non-profit fundraising, event marketing, retail promotions, community newsletters</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">55. Campaign Monitor</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, send campaign, create list<br>
+                        <strong>Triggers:</strong> Subscriber added, email opened<br>
+                        <strong>Use Cases:</strong> Agency email marketing, client campaigns, automated workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">56. Mailgun</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, validate email, manage mailing lists<br>
+                        <strong>Triggers:</strong> Email delivered, bounced, complained<br>
+                        <strong>Use Cases:</strong> Developer-focused email, transactional emails, email validation, SMTP service</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">57. Mailjet</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, manage contacts, create templates<br>
+                        <strong>Triggers:</strong> Email sent, opened, clicked<br>
+                        <strong>Use Cases:</strong> Marketing and transactional emails, SMS campaigns, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">58. Sendinblue (Brevo)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, SMS, manage contacts, create campaign<br>
+                        <strong>Triggers:</strong> Contact added, email opened<br>
+                        <strong>Use Cases:</strong> Email + SMS marketing, CRM, chat, marketing automation, transactional emails</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">59. MailerLite</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, create campaign, manage groups<br>
+                        <strong>Triggers:</strong> Subscriber added, campaign sent<br>
+                        <strong>Use Cases:</strong> Simple email marketing, landing pages, website builder, digital product sellers</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">60. Drip</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, apply tag, track event, create campaign<br>
+                        <strong>Triggers:</strong> Subscriber added, tag applied<br>
+                        <strong>Use Cases:</strong> E-commerce automation, customer lifecycle marketing, behavioral emails</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">61. Klaviyo</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create profile, track event, add to list, send campaign<br>
+                        <strong>Triggers:</strong> Profile created, event tracked<br>
+                        <strong>Use Cases:</strong> E-commerce email/SMS, personalized marketing, abandoned cart recovery, product recommendations</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">62. Omnisend</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add contact, create campaign, manage segments<br>
+                        <strong>Triggers:</strong> Contact added, campaign sent<br>
+                        <strong>Use Cases:</strong> Omnichannel marketing, email + SMS, e-commerce automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">63. Moosend</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add subscriber, send campaign, manage lists<br>
+                        <strong>Triggers:</strong> Subscriber added<br>
+                        <strong>Use Cases:</strong> Affordable email marketing, automation workflows, analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">64. EmailOctopus</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add contact, create campaign, manage lists<br>
+                        <strong>Triggers:</strong> Contact added<br>
+                        <strong>Use Cases:</strong> Cost-effective email marketing, Amazon SES integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">65. Benchmark Email</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add contact, send email, create list<br>
+                        <strong>Triggers:</strong> Contact added<br>
+                        <strong>Use Cases:</strong> Small business email marketing, surveys, automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">66. Mad Mimi</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Add contact, send promotion<br>
+                        <strong>Triggers:</strong> Contact added<br>
+                        <strong>Use Cases:</strong> Simple email marketing, GoDaddy integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">67. Postmark</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, validate email, manage templates<br>
+                        <strong>Triggers:</strong> Email delivered, bounced<br>
+                        <strong>Use Cases:</strong> Transactional email delivery, application emails, high deliverability</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">68. Mandrill (MailChimp)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send transactional email, track delivery<br>
+                        <strong>Triggers:</strong> Email sent, opened<br>
+                        <strong>Use Cases:</strong> Transactional emails, automated receipts, password resets</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">69. SparkPost</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, manage templates, analytics<br>
+                        <strong>Triggers:</strong> Email delivered, bounced<br>
+                        <strong>Use Cases:</strong> High-volume email sending, enterprise email infrastructure</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">70. Amazon SES</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, send templated email, verify email<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Cost-effective bulk email, AWS ecosystem integration, transactional emails</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">71. Elastic Email</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, manage contacts, create campaigns<br>
+                        <strong>Triggers:</strong> Email sent<br>
+                        <strong>Use Cases:</strong> Affordable bulk email, marketing automation, SMTP service</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">72. Pepipost</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send email, track delivery<br>
+                        <strong>Triggers:</strong> Email delivered<br>
+                        <strong>Use Cases:</strong> Transactional email API, developer-friendly email service</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📱 Social Media Management (35)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">73. Twitter / X</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post tweet, like, retweet, follow user, send DM, search tweets<br>
+                        <strong>Triggers:</strong> New mention, new follower, new tweet by user<br>
+                        <strong>Use Cases:</strong> Social listening, brand monitoring, auto-posting, customer service, trend tracking, influencer engagement</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">74. LinkedIn</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post update, share article, create post, send message<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Professional networking, B2B marketing, content distribution, thought leadership, job postings</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">75. Facebook Pages</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, upload photo/video, manage comments, schedule post<br>
+                        <strong>Triggers:</strong> New post, new comment, page like<br>
+                        <strong>Use Cases:</strong> Business page management, content scheduling, community engagement, Facebook ads integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">76. Instagram Business</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post photo, post story, reply to comment, get insights<br>
+                        <strong>Triggers:</strong> New comment, new mention<br>
+                        <strong>Use Cases:</strong> Visual content automation, influencer marketing, product launches, engagement tracking, story posting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">77. YouTube</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Upload video, update video, create playlist, add comment<br>
+                        <strong>Triggers:</strong> New video uploaded, new comment<br>
+                        <strong>Use Cases:</strong> Video content automation, SEO optimization, playlist management, analytics tracking, comment moderation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">78. TikTok Business</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post video, get analytics, manage account<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Short-form video marketing, trend participation, viral content distribution, analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">79. Pinterest</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create pin, create board, repin, search pins<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Visual discovery marketing, product pins, e-commerce traffic, DIY content, recipe sharing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">80. Reddit</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post submission, create comment, upvote, search posts<br>
+                        <strong>Triggers:</strong> New post in subreddit, new comment<br>
+                        <strong>Use Cases:</strong> Community engagement, product launches, AMA automation, market research, brand monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">81. Tumblr</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, reblog, like post, follow blog<br>
+                        <strong>Triggers:</strong> New post<br>
+                        <strong>Use Cases:</strong> Blog content distribution, fan communities, creative content sharing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">82. Medium</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create story, publish draft, get publication<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Blog publishing, thought leadership, content syndication, writer portfolios</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">83. Buffer</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, schedule update, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Multi-platform social scheduling, content calendar, team collaboration, analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">84. Hootsuite</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, schedule message, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Enterprise social media management, team workflows, listening streams</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">85. Sprout Social</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, reply to message, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Social CRM, customer care, competitive analysis, reporting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">86. Later</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Schedule post, upload media, manage calendar<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Visual content planning, Instagram scheduling, link in bio tool</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">87. SocialPilot</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, schedule content, analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Agency social media management, bulk scheduling, client management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">88. Agorapulse</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Publish post, respond to messages, monitor mentions<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Social inbox management, reporting, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">89. Sendible</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, schedule content, manage clients<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Agency platform, client reporting, content recommendations</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">90. CoSchedule</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, schedule message, manage calendar<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Marketing calendar, content organization, team workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">91. Loomly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, schedule content, get ideas<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Content ideation, post previews, team approval workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">92. MeetEdgar</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, add to library, schedule<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Content recycling, evergreen posting, category-based scheduling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">93. Crowdfire</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Schedule post, curate content, analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Content curation, competitor monitoring, auto-publishing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">94. SocialBee</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, categorize content, schedule<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Category-based posting, content recycling, evergreen libraries</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">95. Planable</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, collaborate, approve content<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Team collaboration, approval workflows, client feedback</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">96. ContentCal</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Plan content, schedule posts, manage hubs<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Content planning, multi-brand management, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">97. Planoly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Schedule Instagram post, plan grid, analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Instagram visual planning, grid aesthetics, story scheduling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">98. Tailwind</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Schedule pin, post to Instagram, SmartSchedule<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Pinterest marketing, Instagram scheduling, visual content optimization</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">99. Sked Social</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Schedule post, manage carousel, analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Instagram first posting, carousel automation, story scheduling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">100. Storrito</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Schedule Instagram stories<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Instagram story automation, desktop story creation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">101. Mastodon</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post status, boost, favorite, follow<br>
+                        <strong>Triggers:</strong> New status, new follower<br>
+                        <strong>Use Cases:</strong> Decentralized social media, privacy-focused communities, open-source social</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">102. Bluesky</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, follow user, like post<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Decentralized social networking, Twitter alternative</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">103. Threads (Meta)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Post thread, reply, get insights<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Instagram-linked text content, conversation threading</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">104. WhatsApp Business</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, send template, send media<br>
+                        <strong>Triggers:</strong> New message received<br>
+                        <strong>Use Cases:</strong> Customer service, order confirmations, appointment reminders, conversational commerce</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">105. Viber</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, send image, create keyboard<br>
+                        <strong>Triggers:</strong> Message received<br>
+                        <strong>Use Cases:</strong> International messaging, bot automation, business communications</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">106. Line</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, send image, push notification<br>
+                        <strong>Triggers:</strong> Message received<br>
+                        <strong>Use Cases:</strong> Asian market messaging, chatbots, customer engagement</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">107. WeChat</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, send template, manage followers<br>
+                        <strong>Triggers:</strong> Message received, follower added<br>
+                        <strong>Use Cases:</strong> China market engagement, e-commerce, customer service</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">🎯 Advertising & PPC Platforms (15)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">108. Google Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage keywords, get reports, update budget<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> PPC automation, bid management, campaign optimization, automated reporting, budget alerts</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">109. Facebook Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, create ad set, manage budget, get insights<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Social advertising, retargeting, lookalike audiences, ad performance tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">110. LinkedIn Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage creatives, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> B2B advertising, lead generation, sponsored content, InMail campaigns</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">111. Microsoft Advertising (Bing Ads)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage keywords, get performance data<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Search advertising, campaign management, alternative to Google Ads</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">112. Twitter Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, promote tweet, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Promoted tweets, follower campaigns, website traffic, engagement campaigns</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">113. TikTok Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage ad groups, get reports<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Short-form video ads, Gen Z targeting, viral marketing, brand awareness</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">114. Pinterest Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, promote pin, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Visual advertising, product discovery, e-commerce traffic, shopping campaigns</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">115. Snapchat Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage creatives, track performance<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Youth marketing, AR lenses, story ads, app installs</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">116. Reddit Ads</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, target subreddits, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Community-based advertising, niche targeting, discussion marketing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">117. Amazon Advertising</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage keywords, get reports<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Product advertising, sponsored products, brand stores, display ads</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">118. Taboola</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, manage content, track performance<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Native advertising, content discovery, publisher network</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">119. Outbrain</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, promote content, get analytics<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Content recommendation, native ads, traffic generation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">120. Google Display Network</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create display campaign, manage placements, retargeting<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Banner advertising, remarketing, brand awareness, visual campaigns</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">121. Criteo</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, upload catalog, track conversions<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Performance marketing, retargeting, dynamic product ads</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">122. AdRoll</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create campaign, set up retargeting, manage ads<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Retargeting campaigns, cross-channel advertising, brand awareness</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SALES CRM TAB -->
+            <div id="sales" class="tab-content hide">
+                <div class="category">
+                    <div class="category-title">💼 CRM Systems (30)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">123. Salesforce</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update lead/contact/account/opportunity, custom object operations, SOQL queries<br>
+                        <strong>Triggers:</strong> Record created/updated, field changed<br>
+                        <strong>Use Cases:</strong> Enterprise sales automation, lead routing, opportunity management, account-based marketing, pipeline reporting, custom workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">124. HubSpot</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage contacts/companies/deals, create tasks, send emails, track activities, manage lists<br>
+                        <strong>Triggers:</strong> Contact created/updated, deal stage changed, form submitted<br>
+                        <strong>Use Cases:</strong> Inbound marketing automation, lead nurturing, sales pipeline, marketing analytics, email sequences, deal tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">125. Pipedrive</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update deals, manage contacts, create activities, update pipeline stages<br>
+                        <strong>Triggers:</strong> Deal created/updated, stage changed, activity completed<br>
+                        <strong>Use Cases:</strong> Sales pipeline management, deal tracking, activity automation, sales forecasting, team performance</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">126. Zoho CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update records, search, convert leads, manage modules<br>
+                        <strong>Triggers:</strong> Record created/updated, workflow triggered<br>
+                        <strong>Use Cases:</strong> Multi-channel CRM, sales automation, marketing automation, customer support, analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">127. Microsoft Dynamics 365</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update entities, manage accounts, opportunities, custom workflows<br>
+                        <strong>Triggers:</strong> Record changed, workflow triggered<br>
+                        <strong>Use Cases:</strong> Enterprise CRM, ERP integration, sales automation, customer service, field service</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">128. Copper CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update people, companies, opportunities, tasks<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Google Workspace native CRM, relationship management, pipeline tracking, email integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">129. Close</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update leads, log calls, send emails, create tasks<br>
+                        <strong>Triggers:</strong> Lead created, call logged, email sent<br>
+                        <strong>Use Cases:</strong> Inside sales CRM, call tracking, email automation, sales sequences, team performance</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">130. Freshsales (Freshworks CRM)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage contacts, deals, accounts, create tasks, log activities<br>
+                        <strong>Triggers:</strong> Contact/deal created or updated<br>
+                        <strong>Use Cases:</strong> Lead management, sales automation, email tracking, phone integration, AI-based insights</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">131. Insightly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contacts, organizations, opportunities, projects<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Small business CRM, project management, relationship tracking, email integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">132. Nimble</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, add note, create task<br>
+                        <strong>Triggers:</strong> Contact created/updated<br>
+                        <strong>Use Cases:</strong> Social CRM, relationship intelligence, contact enrichment, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">133. Agile CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage contacts, deals, tasks, send emails, create campaigns<br>
+                        <strong>Triggers:</strong> Contact/deal created or updated<br>
+                        <strong>Use Cases:</strong> All-in-one CRM, marketing automation, sales tracking, service helpdesk</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">134. SugarCRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update records, manage accounts, opportunities, custom modules<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Customizable CRM, sales automation, marketing campaigns, customer support</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">135. Keap (Infusionsoft)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, apply tag, create opportunity, send email<br>
+                        <strong>Triggers:</strong> Contact created, tag applied, form submitted<br>
+                        <strong>Use Cases:</strong> Small business automation, email marketing, sales pipeline, e-commerce integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">136. Capsule CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update person, organization, opportunity, task<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Simple CRM, contact management, pipeline tracking, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">137. Zendesk Sell</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update lead, contact, deal, create task<br>
+                        <strong>Triggers:</strong> Deal created, stage changed<br>
+                        <strong>Use Cases:</strong> Sales CRM, pipeline management, activity tracking, mobile CRM</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">138. Monday Sales CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update items, manage boards, columns, automations<br>
+                        <strong>Triggers:</strong> Item created, column changed<br>
+                        <strong>Use Cases:</strong> Visual sales pipeline, customizable workflows, team collaboration, activity tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">139. EngageBay</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage contacts, deals, tasks, send emails, create campaigns<br>
+                        <strong>Triggers:</strong> Contact created, deal updated<br>
+                        <strong>Use Cases:</strong> All-in-one marketing, sales, service CRM for SMBs</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">140. Nutshell</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, lead, company, create activity<br>
+                        <strong>Triggers:</strong> Contact/lead created or updated<br>
+                        <strong>Use Cases:</strong> Simple B2B CRM, sales automation, reporting, email integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">141. Streak CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update box (record), add to pipeline, create task<br>
+                        <strong>Triggers:</strong> Box created, stage changed<br>
+                        <strong>Use Cases:</strong> Gmail-based CRM, pipeline management, mail merge, email tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">142. Folk</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, add to group, create task<br>
+                        <strong>Triggers:</strong> Contact created<br>
+                        <strong>Use Cases:</strong> Relationship management, contact enrichment, pipeline tracking, team CRM</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">143. Affinity</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update person, organization, list entry<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Relationship intelligence CRM, network analysis, deal flow management, VC/PE firms</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">144. Attio</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update records, manage lists, custom objects<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Modern CRM, data-driven workflows, relationship mapping, customizable</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">145. Salesflare</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update account, contact, opportunity, task<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> B2B sales CRM, automated data entry, email tracking, pipeline management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">146. OnePageCRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create contact, deal, next action, create task<br>
+                        <strong>Triggers:</strong> Contact/deal created<br>
+                        <strong>Use Cases:</strong> Action-focused sales, GTD methodology, simple pipeline, mobile CRM</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">147. Kommo (amoCRM)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update lead, contact, company, task<br>
+                        <strong>Triggers:</strong> Lead created, status changed<br>
+                        <strong>Use Cases:</strong> Messenger-based CRM, social selling, pipeline automation, lead management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">148. Vtiger CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update records, manage modules, custom fields<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Open-source CRM, sales automation, marketing, inventory, project management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">149. Apptivo</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update customers, opportunities, invoices<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Integrated business apps, CRM, project management, invoicing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">150. Bigin by Zoho</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update records, manage pipelines<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Small business CRM, pipeline management, contact organization</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">151. Less Annoying CRM</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, pipeline, task, note<br>
+                        <strong>Triggers:</strong> Contact created<br>
+                        <strong>Use Cases:</strong> Simple small business CRM, contact management, pipeline tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">152. Salesmate</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update contact, deal, activity, task<br>
+                        <strong>Triggers:</strong> Record created/updated<br>
+                        <strong>Use Cases:</strong> Sales CRM, pipeline management, email campaigns, call tracking</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📞 Customer Support & Helpdesk (28)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">153. Zendesk</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update ticket, add comment, assign agent, manage user<br>
+                        <strong>Triggers:</strong> Ticket created/updated, comment added<br>
+                        <strong>Use Cases:</strong> Customer support automation, ticket routing, SLA management, multi-channel support, knowledge base</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">154. Intercom</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update user, send message, create conversation, tag contact<br>
+                        <strong>Triggers:</strong> New conversation, user created, conversation closed<br>
+                        <strong>Use Cases:</strong> Live chat, customer messaging, product tours, help center, chatbots, in-app messaging</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">155. Freshdesk</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update ticket, add note, create contact, manage agent<br>
+                        <strong>Triggers:</strong> Ticket created/updated, note added<br>
+                        <strong>Use Cases:</strong> Helpdesk automation, ticket management, SLA tracking, multi-channel support, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">156. Help Scout</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create conversation, add reply, create customer, add tag<br>
+                        <strong>Triggers:</strong> Conversation created, customer reply<br>
+                        <strong>Use Cases:</strong> Email-based support, shared inbox, knowledge base, customer management, reporting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">157. Front</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create contact, add comment, assign conversation<br>
+                        <strong>Triggers:</strong> New message, conversation assigned<br>
+                        <strong>Use Cases:</strong> Team inbox, email collaboration, customer communication hub, workflow automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">158. Gorgias</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update ticket, send message, add tag<br>
+                        <strong>Triggers:</strong> Ticket created, message received<br>
+                        <strong>Use Cases:</strong> E-commerce helpdesk, Shopify integration, multi-channel support, macros, automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">159. Drift</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create contact, send message, create conversation<br>
+                        <strong>Triggers:</strong> New conversation, contact created<br>
+                        <strong>Use Cases:</strong> Conversational marketing, chatbots, meeting scheduling, sales chat, account-based marketing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">160. LiveChat</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create ticket, update visitor<br>
+                        <strong>Triggers:</strong> New chat, ticket created<br>
+                        <strong>Use Cases:</strong> Live customer chat, visitor tracking, ticketing system, chat analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">161. Crisp</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create conversation, update contact<br>
+                        <strong>Triggers:</strong> New message, conversation created<br>
+                        <strong>Use Cases:</strong> Live chat, chatbot, knowledge base, shared inbox, CRM integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">162. Tidio</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create contact, trigger chatbot<br>
+                        <strong>Triggers:</strong> New message, visitor tracked<br>
+                        <strong>Use Cases:</strong> Live chat + chatbots, visitor tracking, e-commerce integration, email marketing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">163. Chatwoot</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create conversation, send message, update contact<br>
+                        <strong>Triggers:</strong> Message received, conversation created<br>
+                        <strong>Use Cases:</strong> Open-source customer support, omnichannel inbox, live chat, self-hosted</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">164. Helpjuice</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create article, update category, search knowledge base<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Knowledge base, help center, documentation, self-service support</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">165. Zoho Desk</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update ticket, add comment, create contact<br>
+                        <strong>Triggers:</strong> Ticket created/updated<br>
+                        <strong>Use Cases:</strong> Customer service platform, multi-channel support, SLA management, agent collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">166. Kayako</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create conversation, send reply, update customer<br>
+                        <strong>Triggers:</strong> New conversation, reply received<br>
+                        <strong>Use Cases:</strong> Unified customer service, live chat, email support, help center</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">167. Re:amaze</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create conversation, send message, create customer<br>
+                        <strong>Triggers:</strong> New conversation, message received<br>
+                        <strong>Use Cases:</strong> E-commerce support, multi-channel helpdesk, chatbots, FAQ builder</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">168. Kustomer</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create conversation, update customer, add note<br>
+                        <strong>Triggers:</strong> Conversation created, customer updated<br>
+                        <strong>Use Cases:</strong> CRM-based support, omnichannel service, customer timeline, AI automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">169. Gladly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create conversation, send message, update customer<br>
+                        <strong>Triggers:</strong> New conversation<br>
+                        <strong>Use Cases:</strong> People-centered support, conversation-based (not ticket-based), omnichannel</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">170. Groove</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create ticket, send reply, create customer<br>
+                        <strong>Triggers:</strong> Ticket created, reply received<br>
+                        <strong>Use Cases:</strong> Simple helpdesk, shared inbox, knowledge base, reporting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">171. Helpshift</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create issue, send message, update user<br>
+                        <strong>Triggers:</strong> Issue created<br>
+                        <strong>Use Cases:</strong> Mobile in-app support, gaming support, chatbots, automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">172. Kommunicate</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create conversation, assign agent<br>
+                        <strong>Triggers:</strong> New message, conversation created<br>
+                        <strong>Use Cases:</strong> Live chat + chatbots, customer support automation, multi-channel</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">173. Acquire</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create contact, start chat<br>
+                        <strong>Triggers:</strong> Chat started, message received<br>
+                        <strong>Use Cases:</strong> Unified customer communication, co-browsing, chatbots, video calling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">174. Pure Chat</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create visitor<br>
+                        <strong>Triggers:</strong> New chat<br>
+                        <strong>Use Cases:</strong> Simple live chat, visitor tracking, mobile apps</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">175. Tawk.to</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create contact<br>
+                        <strong>Triggers:</strong> New message<br>
+                        <strong>Use Cases:</strong> Free live chat, monitoring, ticketing, knowledge base</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">176. Olark</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create conversation<br>
+                        <strong>Triggers:</strong> Chat started<br>
+                        <strong>Use Cases:</strong> Live chat for sales and support, visitor insights, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">177. SnapEngage</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, transfer chat, create contact<br>
+                        <strong>Triggers:</strong> New chat<br>
+                        <strong>Use Cases:</strong> Live chat, SMS chat, social media messaging, chatbots</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">178. UserVoice</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create suggestion, update status, add comment<br>
+                        <strong>Triggers:</strong> Suggestion created, status changed<br>
+                        <strong>Use Cases:</strong> Product feedback, feature requests, user voting, roadmap planning</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">179. Canny</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create post, update status, add vote<br>
+                        <strong>Triggers:</strong> Post created, status changed<br>
+                        <strong>Use Cases:</strong> Feature request tracking, user feedback, roadmap, changelog</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">180. Productboard</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create note, update feature, manage users<br>
+                        <strong>Triggers:</strong> Note created, feature updated<br>
+                        <strong>Use Cases:</strong> Product management, feature prioritization, customer insights, roadmapping</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📅 Scheduling & Communication (20)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">181. Calendly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> N/A (read-only)<br>
+                        <strong>Triggers:</strong> Event scheduled, event cancelled, invitee created/cancelled<br>
+                        <strong>Use Cases:</strong> Meeting automation, sales calls, client onboarding, interview scheduling, follow-up workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">182. Acuity Scheduling</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create appointment, update client, cancel appointment<br>
+                        <strong>Triggers:</strong> Appointment scheduled, cancelled, rescheduled<br>
+                        <strong>Use Cases:</strong> Service-based booking, class scheduling, appointment reminders, payment collection</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">183. Cal.com</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create booking, update availability<br>
+                        <strong>Triggers:</strong> Booking created, cancelled<br>
+                        <strong>Use Cases:</strong> Open-source scheduling, team booking, embed scheduling, workflow automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">184. Chili Piper</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Book meeting, route lead<br>
+                        <strong>Triggers:</strong> Meeting booked<br>
+                        <strong>Use Cases:</strong> Inbound lead routing, instant booking, sales handoff, scheduling automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">185. SimplyBook.me</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create booking, manage client, update services<br>
+                        <strong>Triggers:</strong> Booking created, cancelled<br>
+                        <strong>Use Cases:</strong> Multi-service booking, class scheduling, resource management, online payments</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">186. Appointlet</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create meeting, update attendee<br>
+                        <strong>Triggers:</strong> Meeting scheduled, cancelled<br>
+                        <strong>Use Cases:</strong> Team scheduling, multi-person meetings, pipeline integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">187. Google Calendar</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete event, add attendee, create calendar<br>
+                        <strong>Triggers:</strong> Event created/updated/deleted, event starting soon<br>
+                        <strong>Use Cases:</strong> Calendar automation, meeting scheduling, event reminders, availability management, team coordination</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">188. Microsoft Outlook Calendar</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete event, send meeting invite<br>
+                        <strong>Triggers:</strong> Event created/updated<br>
+                        <strong>Use Cases:</strong> Enterprise calendar management, meeting automation, resource booking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">189. Zoom</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create meeting, update meeting, get participants, create webinar<br>
+                        <strong>Triggers:</strong> Meeting created, participant joined, webinar registration<br>
+                        <strong>Use Cases:</strong> Video meeting automation, webinar management, attendee tracking, recording distribution</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">190. Microsoft Teams</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, create meeting, manage channel, post card<br>
+                        <strong>Triggers:</strong> Message posted, meeting created<br>
+                        <strong>Use Cases:</strong> Team communication, meeting automation, collaboration workflows, notifications</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">191. Google Meet</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create meeting (via Calendar)<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Video conferencing automation, meeting scheduling, Google Workspace integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">192. Webex</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create meeting, update meeting, list participants<br>
+                        <strong>Triggers:</strong> Meeting created<br>
+                        <strong>Use Cases:</strong> Enterprise video conferencing, webinar hosting, collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">193. GoToWebinar</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create webinar, register attendee, get analytics<br>
+                        <strong>Triggers:</strong> Webinar created, registrant added<br>
+                        <strong>Use Cases:</strong> Webinar automation, registration management, follow-up sequences, analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">194. Demio</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Register attendee, create event<br>
+                        <strong>Triggers:</strong> Registration, attendance<br>
+                        <strong>Use Cases:</strong> Marketing webinars, automated webinars, attendee engagement</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">195. Twilio (Extended)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send SMS, make call, send WhatsApp, verify phone, create conference<br>
+                        <strong>Triggers:</strong> Incoming SMS/call, message status<br>
+                        <strong>Use Cases:</strong> SMS marketing, 2FA, appointment reminders, call tracking, IVR systems, WhatsApp business</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">196. Vonage (Nexmo)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send SMS, make voice call, send verification<br>
+                        <strong>Triggers:</strong> Incoming message/call<br>
+                        <strong>Use Cases:</strong> Programmable communications, SMS APIs, voice APIs, verification</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">197. MessageBird</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send SMS, voice message, WhatsApp, verify contact<br>
+                        <strong>Triggers:</strong> Message received<br>
+                        <strong>Use Cases:</strong> Omnichannel messaging, customer notifications, verification, chatbots</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">198. Plivo</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send SMS, make call, send MMS<br>
+                        <strong>Triggers:</strong> Incoming message/call<br>
+                        <strong>Use Cases:</strong> Voice and SMS APIs, call center automation, global communications</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">199. Bandwidth</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send message, make call, manage numbers<br>
+                        <strong>Triggers:</strong> Message/call received<br>
+                        <strong>Use Cases:</strong> Enterprise communication APIs, voice/messaging platform</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">200. ClickSend</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send SMS, MMS, email-to-SMS, fax, letter<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Multi-channel messaging, bulk SMS, direct mail automation</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEV TOOLS TAB -->
+            <div id="dev" class="tab-content hide">
+                <div class="category">
+                    <div class="category-title">💻 Version Control & Development (15)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">201. GitHub</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update issue/PR, add comment, create repo, manage labels, merge PR<br>
+                        <strong>Triggers:</strong> Issue opened/closed, PR created/merged, push event, release created<br>
+                        <strong>Use Cases:</strong> DevOps automation, CI/CD triggers, code review workflows, release management, issue tracking, project automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">202. GitLab</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create issue/MR, trigger pipeline, create project, manage users<br>
+                        <strong>Triggers:</strong> Pipeline finished, MR opened, push, release created<br>
+                        <strong>Use Cases:</strong> Complete DevOps lifecycle, CI/CD automation, project management, security scanning, container registry</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">203. Bitbucket</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create PR, manage repos, add comment, trigger pipeline<br>
+                        <strong>Triggers:</strong> Push, PR created/updated<br>
+                        <strong>Use Cases:</strong> Atlassian ecosystem, code collaboration, CI/CD with Bamboo/Pipelines</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">204. Git</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Clone repo, commit, push, pull, create branch<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Automated deployments, repo syncing, backup automation, multi-repo management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">205. Gitea</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create issue, PR, repo management<br>
+                        <strong>Triggers:</strong> Push, issue created<br>
+                        <strong>Use Cases:</strong> Self-hosted Git service, lightweight GitHub alternative</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">206. Gogs</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Repo management, issue tracking<br>
+                        <strong>Triggers:</strong> Webhook events<br>
+                        <strong>Use Cases:</strong> Minimal self-hosted Git, private repositories</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">207. Visual Studio Code</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute commands via remote API<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Editor automation, extension workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">208. npm</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Get package info, search packages<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Package version tracking, dependency monitoring, registry automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">209. Sentry</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update issue, get events, manage projects<br>
+                        <strong>Triggers:</strong> Error occurred, issue state changed<br>
+                        <strong>Use Cases:</strong> Error tracking, performance monitoring, alerting, incident management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">210. Bugsnag</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Get error data, manage projects<br>
+                        <strong>Triggers:</strong> Error detected<br>
+                        <strong>Use Cases:</strong> Application monitoring, crash reporting, stability tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">211. Rollbar</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Get items, manage projects<br>
+                        <strong>Triggers:</strong> New error, reactivated error<br>
+                        <strong>Use Cases:</strong> Real-time error tracking, deployment tracking, code version monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">212. New Relic</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Query data, create alert, manage deployments<br>
+                        <strong>Triggers:</strong> Alert triggered<br>
+                        <strong>Use Cases:</strong> APM, infrastructure monitoring, logging, alerting, performance optimization</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">213. Datadog</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send metrics/events, create monitor, query logs<br>
+                        <strong>Triggers:</strong> Monitor triggered<br>
+                        <strong>Use Cases:</strong> Infrastructure monitoring, log management, APM, security monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">214. Grafana</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create dashboard, manage alerts, query data<br>
+                        <strong>Triggers:</strong> Alert triggered<br>
+                        <strong>Use Cases:</strong> Visualization, observability, monitoring dashboards, alerting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">215. Prometheus</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Query metrics, manage alerts<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Time-series monitoring, metrics collection, alerting</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📋 Project Management & Agile (20)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">216. Jira</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update issue, add comment, transition status, manage sprint<br>
+                        <strong>Triggers:</strong> Issue created/updated, status changed, comment added<br>
+                        <strong>Use Cases:</strong> Agile project management, bug tracking, sprint automation, epic management, workflow automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">217. Trello</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update card, add checklist, move card, create board, manage labels<br>
+                        <strong>Triggers:</strong> Card created/moved/updated, checklist completed<br>
+                        <strong>Use Cases:</strong> Visual project management, kanban boards, team collaboration, content calendars, pipeline tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">218. Asana</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, create project, add subtask, manage sections<br>
+                        <strong>Triggers:</strong> Task created/updated, project created<br>
+                        <strong>Use Cases:</strong> Work management, task automation, team coordination, portfolio management, goal tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">219. Monday.com</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update item, create board, manage columns, add update<br>
+                        <strong>Triggers:</strong> Item created/updated, column changed<br>
+                        <strong>Use Cases:</strong> Work OS, customizable workflows, team collaboration, resource management, time tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">220. ClickUp</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, create list/folder, add comment, time tracking<br>
+                        <strong>Triggers:</strong> Task created/updated, status changed<br>
+                        <strong>Use Cases:</strong> All-in-one productivity, task management, docs, goals, time tracking, multiple views</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">221. Linear</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update issue, create project, manage cycles<br>
+                        <strong>Triggers:</strong> Issue created/updated, status changed<br>
+                        <strong>Use Cases:</strong> Modern issue tracking, sprint planning, product roadmaps, GitHub sync</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">222. Height</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, manage lists<br>
+                        <strong>Triggers:</strong> Task created/updated<br>
+                        <strong>Use Cases:</strong> Autonomous project management, AI-assisted workflows, collaborative planning</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">223. Basecamp</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create to-do, post message, upload file, create project<br>
+                        <strong>Triggers:</strong> To-do created, message posted<br>
+                        <strong>Use Cases:</strong> Team communication, project organization, client collaboration, file sharing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">224. Wrike</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, create folder, add comment<br>
+                        <strong>Triggers:</strong> Task created/updated<br>
+                        <strong>Use Cases:</strong> Enterprise work management, resource planning, proofing, reporting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">225. Teamwork</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, manage projects, time tracking<br>
+                        <strong>Triggers:</strong> Task created/updated<br>
+                        <strong>Use Cases:</strong> Client work management, billable hours, project templates, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">226. Todoist</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, create project, add comment<br>
+                        <strong>Triggers:</strong> Task created/completed, project created<br>
+                        <strong>Use Cases:</strong> Personal task management, productivity, GTD methodology, habit tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">227. Microsoft To Do</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update task, create list<br>
+                        <strong>Triggers:</strong> Task created/completed<br>
+                        <strong>Use Cases:</strong> Personal productivity, Microsoft 365 integration, task lists</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">228. Things 3</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create to-do, add to project<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Apple ecosystem task management, GTD, personal productivity</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">229. OmniFocus</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create task, add project<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Advanced task management, GTD power users, complex project planning</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">230. Notion (Extended)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update page/database, add block, search, archive<br>
+                        <strong>Triggers:</strong> Database item created/updated<br>
+                        <strong>Use Cases:</strong> Wiki, documentation, project management, CRM, knowledge base, team collaboration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">231. Confluence</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update page, add comment, create space<br>
+                        <strong>Triggers:</strong> Page created/updated<br>
+                        <strong>Use Cases:</strong> Team documentation, knowledge management, meeting notes, project wikis</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">232. Clubhouse (Shortcut)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update story, create epic, manage iterations<br>
+                        <strong>Triggers:</strong> Story created/updated<br>
+                        <strong>Use Cases:</strong> Software project management, agile planning, iteration tracking</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">233. Taiga</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update user story, task, issue<br>
+                        <strong>Triggers:</strong> Webhook events<br>
+                        <strong>Use Cases:</strong> Open-source agile platform, sprint management, kanban</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">234. YouTrack</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update issue, manage agile boards<br>
+                        <strong>Triggers:</strong> Issue created/updated<br>
+                        <strong>Use Cases:</strong> Issue tracking, agile boards, knowledge base, JetBrains integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">235. Pivotal Tracker</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update story, manage iterations<br>
+                        <strong>Triggers:</strong> Story created/updated<br>
+                        <strong>Use Cases:</strong> Agile project management, story estimation, velocity tracking</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">🗄️ Databases & Data Storage (25)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">236. MySQL</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute query, insert/update/delete, create table, transactions<br>
+                        <strong>Triggers:</strong> N/A (polling required)<br>
+                        <strong>Use Cases:</strong> Database automation, ETL pipelines, data migration, reporting, user management, CRUD operations</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">237. PostgreSQL</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute SQL, CRUD operations, transaction management, COPY commands<br>
+                        <strong>Triggers:</strong> N/A (polling required)<br>
+                        <strong>Use Cases:</strong> Advanced SQL automation, data warehousing, analytics, complex queries, JSON operations</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">238. MongoDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Find/insert/update/delete documents, aggregate, create collection<br>
+                        <strong>Triggers:</strong> N/A (polling required)<br>
+                        <strong>Use Cases:</strong> NoSQL automation, document storage, JSON data, flexible schemas, real-time apps</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">239. Redis</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Get/set/delete keys, lists, hashes, pub/sub, TTL management<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Cache management, session storage, rate limiting, message queues, real-time analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">240. Microsoft SQL Server</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute query, stored procedures, bulk operations<br>
+                        <strong>Triggers:</strong> N/A (polling required)<br>
+                        <strong>Use Cases:</strong> Enterprise database automation, business intelligence, data integration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">241. Oracle Database</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute SQL, PL/SQL procedures<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Enterprise data management, legacy system integration, critical workloads</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">242. Supabase</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Database operations, auth, storage, Edge Functions<br>
+                        <strong>Triggers:</strong> Database webhook, auth events<br>
+                        <strong>Use Cases:</strong> Backend-as-a-Service, PostgreSQL automation, real-time subscriptions, file storage</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">243. Firebase / Firestore</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete document, query collection, auth management<br>
+                        <strong>Triggers:</strong> Document created/updated/deleted<br>
+                        <strong>Use Cases:</strong> Real-time database, mobile backend, serverless apps, user authentication</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">244. DynamoDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Get/put/delete item, query, scan, batch operations<br>
+                        <strong>Triggers:</strong> Stream events<br>
+                        <strong>Use Cases:</strong> AWS NoSQL, serverless applications, high-scale key-value storage</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">245. Elasticsearch</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Index/search documents, create index, bulk operations<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Full-text search, log analytics, application search, data exploration</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">246. Algolia</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Index objects, search, manage indices<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Instant search, e-commerce search, content discovery, mobile search</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">247. Cassandra</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Execute CQL, CRUD operations<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Distributed database, high availability, massive scale data</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">248. CouchDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete document, query views<br>
+                        <strong>Triggers:</strong> Changes feed<br>
+                        <strong>Use Cases:</strong> Document storage, offline-first apps, multi-master replication</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">249. InfluxDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Write/query time-series data, manage buckets<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> IoT data, metrics storage, monitoring, real-time analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">250. TimescaleDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Time-series SQL queries, hypertable management<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> PostgreSQL time-series extension, IoT, financial data, monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">251. Neo4j</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Cypher queries, create nodes/relationships<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Graph database, relationship mapping, social networks, recommendation engines</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">252. ArangoDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Document/graph/key-value operations, AQL queries<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Multi-model database, flexible data modeling, graph analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">253. RavenDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Document operations, queries, indexes<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> .NET applications, document database, ACID transactions</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">254. CockroachDB</div>
+                        <div class="integration-desc"><strong>Actions:</strong> SQL operations, distributed transactions<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Distributed SQL, cloud-native database, geo-distribution</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">255. PlanetScale</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Database operations, branching, deploy requests<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Serverless MySQL, database branching, schema changes</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">256. Fauna</div>
+                        <div class="integration-desc"><strong>Actions:</strong> FQL queries, document operations<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Serverless database, GraphQL, multi-region, ACID transactions</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">257. Xata</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Database operations, search, file storage<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Serverless Postgres, integrated search, developer-friendly database</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">258. Neon</div>
+                        <div class="integration-desc"><strong>Actions:</strong> PostgreSQL operations, branch management<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Serverless Postgres, database branching, instant provisioning</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">259. Railway</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Database deployment, service management<br>
+                        <strong>Triggers:</strong> Deployment events<br>
+                        <strong>Use Cases:</strong> Database hosting, instant deployment, development databases</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">260. Hasura</div>
+                        <div class="integration-desc"><strong>Actions:</strong> GraphQL queries/mutations, metadata operations<br>
+                        <strong>Triggers:</strong> Event triggers, scheduled triggers<br>
+                        <strong>Use Cases:</strong> Instant GraphQL API, real-time subscriptions, event-driven architectures</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">☁️ Cloud Infrastructure & DevOps (35)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">261. AWS (Amazon Web Services)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> EC2, Lambda, S3, SQS, SNS, DynamoDB, CloudWatch, Step Functions<br>
+                        <strong>Triggers:</strong> S3 events, SQS messages, CloudWatch alarms, EventBridge<br>
+                        <strong>Use Cases:</strong> Cloud automation, serverless workflows, infrastructure management, data processing, event-driven architectures</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">262. Google Cloud Platform</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Compute Engine, Cloud Functions, BigQuery, Cloud Storage, Pub/Sub<br>
+                        <strong>Triggers:</strong> Pub/Sub messages, Cloud Storage events<br>
+                        <strong>Use Cases:</strong> Data analytics, machine learning, cloud automation, event processing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">263. Microsoft Azure</div>
+                        <div class="integration-desc"><strong>Actions:</strong> VMs, Functions, Blob Storage, Service Bus, Cosmos DB<br>
+                        <strong>Triggers:</strong> Service Bus, Event Grid, Blob events<br>
+                        <strong>Use Cases:</strong> Enterprise cloud, Microsoft ecosystem, hybrid cloud, IoT solutions</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">264. Docker</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Build/run/stop container, manage images, compose services<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Container automation, deployment pipelines, microservices, testing environments</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">265. Kubernetes</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/update/delete resources, manage pods, deployments, services<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Container orchestration, auto-scaling, deployment automation, cluster management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">266. Terraform</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Plan/apply/destroy infrastructure, manage workspaces<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Infrastructure as Code, cloud provisioning, multi-cloud management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">267. Ansible</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Run playbooks, manage inventory, execute ad-hoc commands<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Configuration management, application deployment, IT automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">268. Jenkins</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Trigger build, get build status, create job, manage queue<br>
+                        <strong>Triggers:</strong> Build completed, job started<br>
+                        <strong>Use Cases:</strong> CI/CD pipelines, build automation, testing workflows, deployment automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">269. CircleCI</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Trigger pipeline, get workflow status, manage projects<br>
+                        <strong>Triggers:</strong> Workflow completed, job finished<br>
+                        <strong>Use Cases:</strong> Continuous integration, automated testing, deployment pipelines</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">270. Travis CI</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Trigger build, get build info, manage repositories<br>
+                        <strong>Triggers:</strong> Build completed<br>
+                        <strong>Use Cases:</strong> Open-source CI, automated testing, deployment automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">271. GitHub Actions</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Trigger workflow, dispatch event, manage artifacts<br>
+                        <strong>Triggers:</strong> Workflow completed, job finished<br>
+                        <strong>Use Cases:</strong> CI/CD in GitHub, automation workflows, release management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">272. GitLab CI/CD</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Trigger pipeline, get pipeline status, create deployment<br>
+                        <strong>Triggers:</strong> Pipeline finished, job completed<br>
+                        <strong>Use Cases:</strong> DevOps automation, continuous deployment, testing pipelines</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">273. Vercel</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy project, manage domains, get deployment status<br>
+                        <strong>Triggers:</strong> Deployment created, deployment ready<br>
+                        <strong>Use Cases:</strong> Frontend deployment, serverless functions, preview deployments</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">274. Netlify</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy site, manage builds, configure domains, forms<br>
+                        <strong>Triggers:</strong> Deploy succeeded/failed, form submission<br>
+                        <strong>Use Cases:</strong> JAMstack hosting, continuous deployment, serverless functions, form handling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">275. Heroku</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy app, manage dynos, scale resources, add-ons<br>
+                        <strong>Triggers:</strong> Build completed, release created<br>
+                        <strong>Use Cases:</strong> Application hosting, easy deployment, managed infrastructure</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">276. DigitalOcean</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage droplets, spaces, databases, load balancers<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Cloud hosting, VPS management, object storage, managed databases</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">277. Linode</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage instances, volumes, domains<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Linux VPS, cloud hosting, infrastructure automation</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">278. Cloudflare</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage DNS, purge cache, firewall rules, Workers<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> CDN management, DDoS protection, DNS automation, edge computing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">279. Cloudflare Workers</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy script, manage KV storage, routes<br>
+                        <strong>Triggers:</strong> HTTP requests<br>
+                        <strong>Use Cases:</strong> Edge computing, serverless functions, API gateways, request modification</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">280. Railway</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy service, manage variables, databases<br>
+                        <strong>Triggers:</strong> Deployment events<br>
+                        <strong>Use Cases:</strong> Instant deployment, database hosting, full-stack applications</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">281. Render</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy service, manage databases, cron jobs<br>
+                        <strong>Triggers:</strong> Deploy events<br>
+                        <strong>Use Cases:</strong> App hosting, static sites, background workers, databases</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">282. Fly.io</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Deploy app, manage machines, volumes<br>
+                        <strong>Triggers:</strong> N/A<br>
+                        <strong>Use Cases:</strong> Global app deployment, edge computing, multi-region hosting</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">283. PagerDuty</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create incident, trigger alert, acknowledge, resolve<br>
+                        <strong>Triggers:</strong> Incident triggered, acknowledged, resolved<br>
+                        <strong>Use Cases:</strong> Incident management, on-call scheduling, alert routing, SRE workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">284. Opsgenie</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create alert, assign, close, manage schedules<br>
+                        <strong>Triggers:</strong> Alert created, acknowledged<br>
+                        <strong>Use Cases:</strong> Alert management, on-call rotations, incident response</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">285. VictorOps (Splunk On-Call)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create incident, manage on-call, escalate<br>
+                        <strong>Triggers:</strong> Incident triggered<br>
+                        <strong>Use Cases:</strong> Incident management, collaborative response, DevOps workflows</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">286. StatusPage</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create incident, update status, manage components<br>
+                        <strong>Triggers:</strong> Incident created/updated<br>
+                        <strong>Use Cases:</strong> Status communication, incident reporting, uptime monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">287. UptimeRobot</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create/manage monitors, get uptime stats<br>
+                        <strong>Triggers:</strong> Monitor down/up<br>
+                        <strong>Use Cases:</strong> Website monitoring, uptime tracking, alerting, status pages</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">288. Pingdom</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage checks, get performance data<br>
+                        <strong>Triggers:</strong> Check down/up<br>
+                        <strong>Use Cases:</strong> Performance monitoring, uptime tracking, real user monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">289. Better Uptime</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create monitor, manage incidents, status pages<br>
+                        <strong>Triggers:</strong> Monitor down, incident created<br>
+                        <strong>Use Cases:</strong> Uptime monitoring, incident management, on-call scheduling</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">290. Checkly</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Create check, manage groups, get results<br>
+                        <strong>Triggers:</strong> Check failed<br>
+                        <strong>Use Cases:</strong> API monitoring, browser checks, synthetic monitoring, E2E testing</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">291. LogDNA (Mezmo)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send logs, create views, alerts<br>
+                        <strong>Triggers:</strong> Alert triggered<br>
+                        <strong>Use Cases:</strong> Log management, aggregation, searching, real-time monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">292. Papertrail</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send logs, search, create alerts<br>
+                        <strong>Triggers:</strong> Alert matched<br>
+                        <strong>Use Cases:</strong> Log aggregation, troubleshooting, system monitoring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">293. Splunk</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send events, run searches, manage alerts<br>
+                        <strong>Triggers:</strong> Alert triggered<br>
+                        <strong>Use Cases:</strong> Enterprise log analysis, security monitoring, business analytics</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">294. Sumo Logic</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send logs, search, create monitors<br>
+                        <strong>Triggers:</strong> Monitor triggered<br>
+                        <strong>Use Cases:</strong> Cloud-native logging, security analytics, compliance</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">295. Logtail (Better Stack)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Send logs, query, create alerts<br>
+                        <strong>Triggers:</strong> Alert triggered<br>
+                        <strong>Use Cases:</strong> SQL-queryable logging, fast search, developer-friendly logs</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">🛒 E-commerce & Payment (25)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">296. Shopify (Extended)</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Orders, products, customers, inventory, fulfillment, discounts, collections<br>
+                        <strong>Triggers:</strong> Order created, product updated, customer created, fulfillment created<br>
+                        <strong>Use Cases:</strong> Order automation, inventory sync, customer management, abandoned cart, product updates</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">297. WooCommerce</div>
+                        <div class="integration-desc"><strong>Actions:</strong> Manage orders, products, customers, coupons<br>
+                        <strong>Triggers:</strong> Order created, product updated<br>
+                        <strong>Use Cases:</strong> WordPress e-commerce, order processing, inventory management</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">298-320. Stripe, PayPal, Square, BigCommerce, Etsy, eBay, Amazon Seller, Printful, ShipStation</div>
+                        <div class="integration-desc"><strong>Plus:</strong> Chargebee, Paddle, Razorpay, Mollie, LemonSqueezy, Gumroad + more<br>
+                        <strong>Use Cases:</strong> Payment processing, subscriptions, shipping, e-commerce automation, global payments</div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📊 Analytics & More (52)</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">321-372. Complete Coverage</div>
+                        <div class="integration-desc">
+                        <strong>Analytics:</strong> Google Analytics, Mixpanel, Amplitude, Segment, PostHog, Plausible, Hotjar<br>
+                        <strong>Forms:</strong> Typeform, Google Forms, JotForm, SurveyMonkey, Tally, Cognito Forms<br>
+                        <strong>AI/ML:</strong> OpenAI, Anthropic Claude, Google Gemini, Hugging Face, ElevenLabs, AssemblyAI<br>
+                        <strong>HR:</strong> BambooHR, Greenhouse, Lever, Workday, Gusto, Rippling<br>
+                        <strong>Accounting:</strong> QuickBooks, Xero, FreshBooks, Wave, Expensify<br>
+                        <strong>Use Cases:</strong> Complete business automation across all departments</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRICING TAB -->
+            <div id="pricing" class="tab-content hide">
+                <div class="price-info">
+                    <div class="price-title">💰 n8n Pricing Models (2026)</div>
+                    <div class="price-detail">
+                        <strong>Cloud Starter:</strong> $20/month - 2,500 workflow executions<br>
+                        <strong>Cloud Pro:</strong> $50/month - 10,000 executions<br>
+                        <strong>Cloud Enterprise:</strong> Custom pricing - Unlimited executions<br>
+                        <strong>Self-Hosted:</strong> FREE - Unlimited (host yourself)<br><br>
+                        <strong>💡 Recommended:</strong> Start clients on Cloud Pro, upsell to Enterprise or Self-Hosted for high-volume needs
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <strong>💡 Your Service Pricing Strategy:</strong><br>
+                    • Basic Setup: $500-$1,500 per workflow<br>
+                    • Monthly Maintenance: $200-$800/month<br>
+                    • Custom Enterprise Solutions: $5,000-$50,000+<br>
+                    • Hourly Consultation: $75-$200/hour<br>
+                    • Emergency Support: $150-$300/hour<br>
+                    • Training (per person): $500-$1,500/day
+                </div>
+
+                <div class="category">
+                    <div class="category-title">📦 Package Pricing Examples</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">Starter Package - $1,500</div>
+                        <div class="integration-desc">
+                        <strong>Includes:</strong> 3 basic workflows, setup consultation, 1 month support<br>
+                        <strong>Examples:</strong> Email to Slack notifications, Form to CRM sync, Daily reports<br>
+                        <strong>Best For:</strong> Small businesses, solopreneurs, testing automation
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Growth Package - $5,000</div>
+                        <div class="integration-desc">
+                        <strong>Includes:</strong> 10 workflows, custom integrations, 3 months support, training<br>
+                        <strong>Examples:</strong> Sales pipeline automation, Marketing campaign flows, Customer onboarding<br>
+                        <strong>Best For:</strong> Growing companies, agencies, e-commerce stores
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Enterprise Package - $25,000+</div>
+                        <div class="integration-desc">
+                        <strong>Includes:</strong> Unlimited workflows, dedicated support, SLA, custom development<br>
+                        <strong>Examples:</strong> Complete business automation, multi-system integration, data pipelines<br>
+                        <strong>Best For:</strong> Large enterprises, complex operations, mission-critical automation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">🎯 Revenue Opportunities</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">Workflow Package Deals</div>
+                        <div class="integration-desc">Sell pre-built workflow templates: Lead Gen ($800), E-commerce Order Processing ($1,200), Social Media Manager ($600), Email Drip Campaigns ($500), Customer Support Automation ($900)</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Retainer Services</div>
+                        <div class="integration-desc">Monthly automation management: Monitor workflows, add new integrations, optimize performance, troubleshooting. $500-$2,000/month per client. <strong>Target:</strong> 10 retainer clients = $5K-$20K/month recurring</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Training Programs</div>
+                        <div class="integration-desc">1-day workshop: $1,500-$3,000. Online course: $297-$997. Corporate training: $5,000-$15,000. <strong>Upsell:</strong> Bundle training with implementation for 30% discount</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">White Label Solutions</div>
+                        <div class="integration-desc">Resell n8n workflows under your brand. Mark up 100-300%. Partner with agencies. <strong>Model:</strong> Agency pays you $3K, you deliver for $1K, profit $2K per project</div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Industry-Specific Solutions</div>
+                        <div class="integration-desc">
+                        <strong>Real Estate:</strong> Lead follow-up automation ($2,500)<br>
+                        <strong>Healthcare:</strong> Patient intake workflows ($3,500)<br>
+                        <strong>Legal:</strong> Document automation ($4,000)<br>
+                        <strong>E-commerce:</strong> Order fulfillment system ($3,000)
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Affiliate & Referral Income</div>
+                        <div class="integration-desc">
+                        <strong>n8n Cloud Referrals:</strong> Partner program (contact n8n)<br>
+                        <strong>Tool Referrals:</strong> Promote integrated tools (Shopify, HubSpot, etc.) for commission<br>
+                        <strong>Hosting Referrals:</strong> Recommend DigitalOcean, AWS for self-hosted (affiliate income)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <strong>💵 Monthly Revenue Projection:</strong><br>
+                    • 2 Enterprise clients: $10,000<br>
+                    • 5 Growth packages: $15,000<br>
+                    • 10 Retainers: $10,000<br>
+                    • 3 Training sessions: $6,000<br>
+                    • Maintenance & support: $4,000<br>
+                    <strong>= $45,000/month potential</strong>
+                </div>
+
+                <div class="price-info">
+                    <div class="price-title">🧮 ROI Calculator for Clients</div>
+                    <div class="price-detail">
+                        <strong>Show this to prospects:</strong><br>
+                        • Employee doing manual work: 10 hrs/week × $25/hr = $13,000/year<br>
+                        • Your automation solution: $5,000 one-time + $400/month = $9,800/year<br>
+                        • <strong>Client saves: $3,200/year + gains speed & accuracy</strong><br>
+                        • ROI: 32% first year, 100%+ ongoing<br><br>
+                        <strong>Payback period:</strong> Usually 3-6 months
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">💼 Comparison vs Competitors</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">n8n vs Zapier (Show clients why n8n)</div>
+                        <div class="integration-desc">
+                        <strong>Zapier:</strong> $30-600/month, limited tasks, locked-in platform<br>
+                        <strong>n8n:</strong> $20-50/month OR free self-hosted, unlimited tasks<br>
+                        <strong>Your Pitch:</strong> "Save 80% on automation costs with n8n vs Zapier"
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">n8n vs Make.com</div>
+                        <div class="integration-desc">
+                        <strong>Make:</strong> $9-29/month entry, operations limits<br>
+                        <strong>n8n:</strong> More developer-friendly, self-hosted option, open-source<br>
+                        <strong>Your Pitch:</strong> "n8n gives you complete control and transparency"
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">n8n vs Custom Development</div>
+                        <div class="integration-desc">
+                        <strong>Custom Code:</strong> $50,000-200,000 for enterprise automation<br>
+                        <strong>n8n Solution:</strong> $5,000-25,000 for same functionality<br>
+                        <strong>Your Pitch:</strong> "Save 80-90% vs custom development with faster delivery"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <strong>🎯 Pricing Psychology Tips:</strong><br>
+                    • Always offer 3 tiers (anchoring effect)<br>
+                    • Price by value delivered, not hours worked<br>
+                    • Bundle services for 15-20% "discount"<br>
+                    • Offer payment plans (50% upfront, 50% on delivery)<br>
+                    • Annual retainer = 10 months pricing (2 months free)<br>
+                    • Early bird discount: 10% off if signed in 48 hours
+                </div>
+            </div>
+
+            <!-- CLIENTS TAB -->
+            <div id="clients" class="tab-content hide">
+                <div class="category">
+                    <div class="category-title">🎯 Ideal Client Profiles</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">E-commerce Businesses</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Order processing, inventory sync, customer emails, shipping automation<br>
+                            <strong>Budget:</strong> $2,000-$10,000 initial + $300-$1,500/month<br>
+                            <div class="client-tag">Shopify</div>
+                            <div class="client-tag">WooCommerce</div>
+                            <div class="client-tag">Amazon Sellers</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Marketing Agencies</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Social media posting, client reporting, lead management, campaign automation<br>
+                            <strong>Budget:</strong> $3,000-$15,000 initial + $500-$2,000/month<br>
+                            <div class="client-tag">Digital Marketing</div>
+                            <div class="client-tag">Social Media Mgmt</div>
+                            <div class="client-tag">Content Creators</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">SaaS Companies</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> User onboarding, customer support automation, data sync, analytics<br>
+                            <strong>Budget:</strong> $5,000-$50,000 initial + $1,000-$5,000/month<br>
+                            <div class="client-tag">B2B SaaS</div>
+                            <div class="client-tag">Startups</div>
+                            <div class="client-tag">Tech Companies</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Real Estate Firms</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Lead follow-up, property alerts, CRM sync, email campaigns<br>
+                            <strong>Budget:</strong> $1,500-$8,000 initial + $250-$1,200/month<br>
+                            <div class="client-tag">Realtors</div>
+                            <div class="client-tag">Property Management</div>
+                            <div class="client-tag">Brokerages</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Financial Services</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Client onboarding, document processing, reporting, compliance automation<br>
+                            <strong>Budget:</strong> $5,000-$30,000 initial + $1,000-$4,000/month<br>
+                            <div class="client-tag">Accounting Firms</div>
+                            <div class="client-tag">Financial Advisors</div>
+                            <div class="client-tag">Insurance</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Healthcare Providers</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Appointment reminders, patient intake, insurance verification, billing<br>
+                            <strong>Budget:</strong> $3,000-$20,000 initial + $500-$2,500/month<br>
+                            <div class="client-tag">Medical Practices</div>
+                            <div class="client-tag">Dental Offices</div>
+                            <div class="client-tag">Clinics</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Consultants & Coaches</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Booking automation, email sequences, content distribution, client management<br>
+                            <strong>Budget:</strong> $1,000-$5,000 initial + $200-$800/month<br>
+                            <div class="client-tag">Business Coaches</div>
+                            <div class="client-tag">Consultants</div>
+                            <div class="client-tag">Course Creators</div>
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Non-Profit Organizations</div>
+                        <div class="integration-desc">
+                            <strong>Needs:</strong> Donor management, event registration, volunteer coordination, fundraising<br>
+                            <strong>Budget:</strong> $800-$5,000 initial + $150-$600/month<br>
+                            <div class="client-tag">Charities</div>
+                            <div class="client-tag">Foundations</div>
+                            <div class="client-tag">Community Orgs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <strong>🎯 Where to Find Clients:</strong><br>
+                    <strong>Online Platforms:</strong><br>
+                    • Upwork, Fiverr - Post "n8n automation" gigs<br>
+                    • LinkedIn - Target decision makers (COO, VP Ops, CTO)<br>
+                    • Reddit r/entrepreneur, r/smallbusiness - Provide value first<br>
+                    • Facebook Groups - Industry-specific communities<br>
+                    • Twitter/X - Share automation tips, build authority<br><br>
+                    
+                    <strong>Direct Outreach:</strong><br>
+                    • Cold email businesses using Zapier (offer migration)<br>
+                    • Partner with web design/dev agencies (referrals)<br>
+                    • Local chamber of commerce & BNI groups<br>
+                    • Industry conferences & trade shows<br>
+                    • Cold call businesses with manual processes<br><br>
+                    
+                    <strong>Content Marketing:</strong><br>
+                    • YouTube tutorials → lead magnet → consultation<br>
+                    • Blog: "10 n8n workflows for [industry]"<br>
+                    • Free workflow templates on Gumroad<br>
+                    • LinkedIn articles showcasing ROI case studies<br>
+                    • TikTok/Instagram Reels showing automation demos
+                </div>
+
+                <div class="use-case">
+                    <strong>💼 Sales Pitch Templates:</strong><br><br>
+                    
+                    <strong>Discovery Call Script:</strong><br>
+                    "I help [type of business] save [X hours/week] by automating [specific tasks] using n8n. My clients typically see ROI in [timeframe] through [specific benefit]. Would you like to see how I automated [similar company's] entire [process]?"<br><br>
+                    
+                    <strong>Email Outreach Template:</strong><br>
+                    Subject: Save 15 hours/week on [manual task]<br>
+                    "Hi [Name], I noticed [company] is [doing X manually/using Zapier]. I specialize in n8n automation and helped [similar company] save $X,XXX/year by automating [specific workflow]. Would a 15-min call next week work to show you how?"<br><br>
+                    
+                    <strong>Value Proposition (One-liner):</strong><br>
+                    "I build custom automation workflows that do the work of 2-3 employees for a fraction of the cost, using n8n - the most powerful and cost-effective automation platform."
+                </div>
+
+                <div class="category">
+                    <div class="category-title">❓ Client Qualification Questions</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">Ask During Discovery Call</div>
+                        <div class="integration-desc">
+                        1. What manual tasks take up most of your team's time?<br>
+                        2. How many hours per week are spent on repetitive work?<br>
+                        3. What tools/software are you currently using?<br>
+                        4. Have you tried automation before? (Zapier, Make.com?)<br>
+                        5. What would successful automation look like for you?<br>
+                        6. What's your timeline for implementing this?<br>
+                        7. What's your budget range for automation solutions?<br>
+                        8. Who else needs to be involved in this decision?
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Red Flags (Don't Take These Clients)</div>
+                        <div class="integration-desc">
+                        ❌ "We need it done by tomorrow"<br>
+                        ❌ "We don't have a budget, but can you do it for exposure?"<br>
+                        ❌ "We want unlimited revisions included"<br>
+                        ❌ "Can you also build our website/app/everything?"<br>
+                        ❌ Vague requirements + unwilling to clarify<br>
+                        ❌ History of firing multiple contractors
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">Green Flags (Ideal Clients)</div>
+                        <div class="integration-desc">
+                        ✅ Clear pain point they can articulate<br>
+                        ✅ Budget already allocated for solutions<br>
+                        ✅ Willing to document their current process<br>
+                        ✅ Responsive and communicative<br>
+                        ✅ Open to ongoing retainer relationship<br>
+                        ✅ Value results over lowest price<br>
+                        ✅ Quick decision-making authority
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="category-title">🎁 Lead Magnets & Free Resources</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">Offer These to Build Your List</div>
+                        <div class="integration-desc">
+                        📥 "Free n8n Workflow Audit" - Review their current processes (30 min call)<br>
+                        📥 "10 Pre-Built n8n Workflows" - Templates they can import<br>
+                        📥 "n8n vs Zapier Cost Calculator" - Interactive spreadsheet<br>
+                        📥 "Automation Readiness Checklist" - Self-assessment PDF<br>
+                        📥 "ROI Calculator Template" - Show potential savings<br>
+                        📥 Free mini-course: "5-Day n8n Automation Challenge"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <strong>📊 Conversion Funnel Example:</strong><br>
+                    1. <strong>Awareness:</strong> YouTube video "How I Automated My Business with n8n"<br>
+                    2. <strong>Interest:</strong> Free workflow template download (email capture)<br>
+                    3. <strong>Consideration:</strong> Email sequence with case studies & tips<br>
+                    4. <strong>Decision:</strong> Free 30-min automation audit call<br>
+                    5. <strong>Action:</strong> Proposal for starter package<br>
+                    6. <strong>Retention:</strong> Monthly retainer for ongoing support<br><br>
+                    
+                    <strong>Expected Conversion:</strong> 1,000 views → 100 downloads → 20 calls → 5 clients = $15,000+
+                </div>
+
+                <div class="category">
+                    <div class="category-title">🔥 Objection Handlers</div>
+                    
+                    <div class="integration-card">
+                        <div class="integration-name">"It's too expensive"</div>
+                        <div class="integration-desc">
+                        Response: "I understand. Let me show you the math: you're currently spending [X hours/week] on this task. At [your employee's hourly rate], that's $[amount]/year. My solution pays for itself in [timeframe] and then saves you money every month after that. Plus, you get speed and accuracy you can't get with manual work. Does that make sense?"
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">"We're already using Zapier"</div>
+                        <div class="integration-desc">
+                        Response: "That's great that you're thinking about automation! Here's the thing - Zapier can cost $300-600/month for what you're doing. With n8n, you'd pay $20-50/month OR host it free. Plus, n8n has more flexibility for complex workflows. Want me to show you a side-by-side comparison for your specific use case?"
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">"Can't we just hire someone to do it manually?"</div>
+                        <div class="integration-desc">
+                        Response: "You absolutely could! A VA costs $15-25/hour, so for 20 hours/week that's $1,500-2,500/month = $18,000-30,000/year. My automation solution is a one-time $[X] + $[Y]/month = $[total]/year. Plus, automation works 24/7, never calls in sick, and makes zero errors. Which sounds better for your business?"
+                        </div>
+                    </div>
+
+                    <div class="integration-card">
+                        <div class="integration-name">"We need to think about it"</div>
+                        <div class="integration-desc">
+                        Response: "Absolutely, this is an important decision. Just to help your thinking - what specific concerns do you have? [Listen] Also, I'm running a special this month: if you commit within 48 hours, I'll include [bonus] worth $[X] at no extra cost. When would be a good time to follow up?"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-case">
+                    <strong>⚡ Quick Win Strategy:</strong><br>
+                    Start new clients with a SMALL, fast win:<br>
+                    • Week 1: Implement simple workflow (form → Slack notification)<br>
+                    • Show immediate value in 3-5 days<br>
+                    • Build trust and demonstrate expertise<br>
+                    • Then upsell larger automation projects<br>
+                    • This approach has 80% upsell success rate
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hide'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.remove('hide');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function searchIntegrations() {
+            const input = document.getElementById('searchBox');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.integration-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.integration-name').textContent.toLowerCase();
+                const desc = card.querySelector('.integration-desc').textContent.toLowerCase();
+                
+                if (name.includes(filter) || desc.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
